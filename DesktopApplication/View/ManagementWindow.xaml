@@ -1,0 +1,77 @@
+﻿<Window x:Class="DesktopApplication.View.ManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopApplication.View"
+        xmlns:repository="clr-namespace:DesktopApplication.Repository"
+        xmlns:viewModel="clr-namespace:DesktopApplication.ViewModel"
+        mc:Ignorable="d"
+        Title="Management" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Icon="../Images/icon.ico"
+        WindowState="Maximized" Topmost="True">
+    <Window.DataContext>
+        <viewModel:ManagementWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+
+        <TabControl Grid.Row="0">
+            <TabItem Header="Pizzas">
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
+                          ItemsSource="{Binding Path=Pizzas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}" Width="Auto" />
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, StringFormat={}{0:C}}"
+                                            Width="100" IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="Crust" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Margin="2" x:Name="ComboBoxTest"
+                                              SelectedItem="{Binding Crust, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Name"
+                                              ItemsSource="{Binding DataContext.Crusts, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!-- </DataGridTemplateColumn> -->
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Path=Ingredients}" Width="100" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+            <TabItem Header="Pizza Cards" />
+            <TabItem Header="Ingredients" />
+            <TabItem Header="Crusts">
+
+                <DataGrid AutoGenerateColumns="False"
+                          ItemsSource="{Binding Path=Crusts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}" Width="90" />
+                        <DataGridTextColumn Header="IngredientPrice"
+                                            Binding="{Binding Path=IngredientPrice, Mode=TwoWay}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, Mode=TwoWay}" Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </TabItem>
+
+            <TabItem Header="Drinks" />
+            <TabItem Header="Drink Cards" />
+
+            <TabItem Header="Others" />
+            <TabItem Header="Other Cards" />
+
+            <TabItem Header="Users" />
+        </TabControl>
+
+        <Button Grid.Row="1" />
+
+    </Grid>
+</Window>

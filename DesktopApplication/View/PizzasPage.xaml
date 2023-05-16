@@ -1,0 +1,99 @@
+﻿<Page x:Class="DesktopApplication.View.PizzasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DesktopApplication.View"
+      xmlns:model="clr-namespace:DesktopApplication.Model"
+      xmlns:viewModel="clr-namespace:DesktopApplication.ViewModel"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PizzasPage">
+    <Page.DataContext>
+        <viewModel:PizzasPageViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <DataTemplate x:Key="PizzaCardDataTemplate" DataType="{x:Type model:PizzaCard}">
+            <Border Width="250" Height="400" BorderThickness="1" BorderBrush="Gray" Margin="5"
+                    CornerRadius="5" Background="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="6*" />
+                        <RowDefinition Height="5.25*" />
+                        <RowDefinition Height="0.75*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="{Binding ImageUri}" Stretch="Fill" />
+                    <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+                        <TextBlock Text="{Binding Product.Name, Mode=TwoWay}" FontSize="16" TextWrapping="Wrap"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Description}" FontSize="16" TextWrapping="Wrap"
+                                   TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="2" Text="Select your size &amp; crust" FontSize="16"
+                               Margin="10, 0" VerticalAlignment="Bottom" />
+                    <ComboBox x:Name="crustComboBox"
+                              Grid.Row="3" Margin="10, 5"
+
+                              ItemsSource="{Binding DataContext.CrustTypeValues, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
+
+                              DisplayMemberPath="Name"
+                              SelectedItem="{Binding Product.Crust}"
+                              FontSize="16"
+                              VerticalAlignment="Center"
+                              VerticalContentAlignment="Center" />
+                    <Button Grid.Row="4" Margin="10, 5, 10, 10" Click="AddProductToBasketButton_Click">
+                        <TextBlock Text="{Binding Product.Price, StringFormat={}{0:C}}" />
+                    </Button>
+                    <!-- <Button Grid.Row="4" Margin="10, 5, 10, 10" -->
+                    <!--         Click="AddProductToBasketButton_OnClick" Style="{StaticResource ButtonAddProductStyle}"> -->
+                    <!--     <TextBlock Text="{Binding Product.Price, StringFormat={}{0:C}}" /> -->
+                    <!-- </Button> -->
+                </Grid>
+                <Border.Effect>
+                    <DropShadowEffect x:Name="shadowEffect" BlurRadius="10" ShadowDepth="1" Opacity="0" />
+                </Border.Effect>
+                <Border.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="shadowEffect"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0.7"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="shadowEffect"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="0"
+                                                 Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Border.Triggers>
+            </Border>
+        </DataTemplate>
+
+
+        <Style x:Key="PizzaCardItemsControlStyle" TargetType="{x:Type ItemsControl}">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate" Value="{StaticResource PizzaCardDataTemplate}" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <ItemsControl
+            ItemsSource="{Binding Path=PizzaCards }"
+            Style="{StaticResource PizzaCardItemsControlStyle}" />
+    </Grid>
+</Page>

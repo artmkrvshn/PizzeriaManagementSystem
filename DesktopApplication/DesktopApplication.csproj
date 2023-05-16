@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\background.jpg" />
+    <None Remove="Images\bbq-meatfeast.jpg" />
+    <None Remove="Images\card-payment-icons.png" />
+    <None Remove="Images\cyo.jpg" />
+    <None Remove="Images\farmhouse.jpg" />
+    <None Remove="Images\hawaiian.jpg" />
+    <None Remove="Images\icon.ico" />
+    <None Remove="Images\loaded-chicken-supreme.jpg" />
+    <None Remove="Images\loaded-hawaiian.jpg" />
+    <None Remove="Images\loaded-margherita.jpg" />
+    <None Remove="Images\loaded-pepperoni-feast.jpg" />
+    <None Remove="Images\margherita.jpg" />
+    <None Remove="Images\meat-feast.jpg" />
+    <None Remove="Images\meaty-one.jpg" />
+    <None Remove="Images\pepperoni-feast.jpg" />
+    <None Remove="Images\pizza-logo.jpg" />
+    <None Remove="Images\pizzeria-logo.png" />
+    <None Remove="Images\plogo.png" />
+    <None Remove="Images\plogo2.png" />
+    <None Remove="Images\texan-bbq.jpg" />
+    <None Remove="Images\veg-sizzler.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\bbq-meatfeast.jpg" />
+    <Resource Include="Images\card-payment-icons.png" />
+    <Resource Include="Images\cyo.jpg" />
+    <Resource Include="Images\farmhouse.jpg" />
+    <Resource Include="Images\hawaiian.jpg" />
+    <Resource Include="Images\icon.ico" />
+    <Resource Include="Images\loaded-chicken-supreme.jpg" />
+    <Resource Include="Images\loaded-hawaiian.jpg" />
+    <Resource Include="Images\loaded-margherita.jpg" />
+    <Resource Include="Images\loaded-pepperoni-feast.jpg" />
+    <Resource Include="Images\margherita.jpg" />
+    <Resource Include="Images\meat-feast.jpg" />
+    <Resource Include="Images\meaty-one.jpg" />
+    <Resource Include="Images\pepperoni-feast.jpg" />
+    <Resource Include="Images\pizza-logo.jpg" />
+    <Resource Include="Images\texan-bbq.jpg" />
+    <Resource Include="Images\veg-sizzler.jpg" />
+  </ItemGroup>
+
+</Project>
