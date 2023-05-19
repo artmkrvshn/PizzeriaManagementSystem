@@ -13,6 +13,7 @@
         WindowState="Maximized" Topmost="True">
     <Window.DataContext>
         <viewModel:ManagementWindowViewModel />
+        <!-- <viewModel:RepositoryViewModel /> -->
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -23,43 +24,56 @@
 
         <TabControl Grid.Row="0">
             <TabItem Header="Pizzas">
-                <DataGrid AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True"
-                          ItemsSource="{Binding Path=Pizzas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGrid x:Name="PizzasDataGrid" AutoGenerateColumns="False" CanUserAddRows="True"
+                          CanUserDeleteRows="True"
+                          ItemsSource="{Binding Path=Pizzas}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}" Width="Auto" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" />
                         <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, StringFormat={}{0:C}}"
-                                            Width="100" IsReadOnly="True" />
+                                            IsReadOnly="True" />
+                        <DataGridTemplateColumn Header="Crust">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Margin="2"
+                                              SelectedItem="{Binding Crust, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              DisplayMemberPath="Name"
+                                              ItemsSource="{Binding DataContext.Crusts, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!-- <DataGridTextColumn Header="Имя" Binding="{Binding Path=Ingredients}" Width="100" /> -->
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Pizza Cards">
+
+                <DataGrid x:Name="PizzaCardsDataGrid" AutoGenerateColumns="False" CanUserAddRows="True"
+                          CanUserDeleteRows="True"
+                          ItemsSource="{Binding Path=PizzaCards}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Product" Binding="{Binding Path=Product.Name}" Width="Auto" />
+                        <DataGridTextColumn Header="Descr" Binding="{Binding Path=Description, StringFormat={}{0:C}}"
+                                            Width="Auto" />
                         <DataGridTemplateColumn Header="Crust" Width="Auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <ComboBox Margin="2" x:Name="ComboBoxTest"
-                                              SelectedItem="{Binding Crust, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              SelectedItem="{Binding Product}"
                                               DisplayMemberPath="Name"
-                                              ItemsSource="{Binding DataContext.Crusts, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                                              ItemsSource="{Binding DataContext.Pizzas, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <!-- </DataGridTemplateColumn> -->
-                        <DataGridTextColumn Header="Имя" Binding="{Binding Path=Ingredients}" Width="100" />
+                        <!-- <DataGridTextColumn Header="Имя" Binding="{Binding Path=Ingredients}" Width="100" /> -->
                     </DataGrid.Columns>
                 </DataGrid>
 
             </TabItem>
-            <TabItem Header="Pizza Cards" />
             <TabItem Header="Ingredients" />
             <TabItem Header="Crusts">
-
-                <DataGrid AutoGenerateColumns="False"
+                <DataGrid x:Name="CrustsDataGrid"
                           ItemsSource="{Binding Path=Crusts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Name, Mode=TwoWay}" Width="90" />
-                        <DataGridTextColumn Header="IngredientPrice"
-                                            Binding="{Binding Path=IngredientPrice, Mode=TwoWay}"
-                                            Width="90" />
-                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Price, Mode=TwoWay}" Width="90" />
-                    </DataGrid.Columns>
                 </DataGrid>
-
             </TabItem>
 
             <TabItem Header="Drinks" />
@@ -71,7 +85,19 @@
             <TabItem Header="Users" />
         </TabControl>
 
-        <Button Grid.Row="1" />
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Button Grid.Column="0" Content="DataBase" Command="{Binding ShowDBCommand}" />
+            <Button Grid.Column="1" Content="ViewModel" Command="{Binding ShowVMCommand}" />
+            <Button Grid.Column="2" Content="Save" Click="ButtonBase_OnClick" />
+        </Grid>
+
 
     </Grid>
 </Window>

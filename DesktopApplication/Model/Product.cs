@@ -1,39 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace DesktopApplication.Model;
 
-public abstract class Product : INotifyPropertyChanged
+public abstract class Product : BaseModel
 {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)
-    {
-        if (EqualityComparer<T>.Default.Equals(field, newValue)) return false;
-        field = newValue;
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        return true;
-    }
-
-
-    public Guid Id { get; }
+    protected Guid Id { get; } = Guid.NewGuid();
 
     private string _name;
+
+    #region Properties
 
     public string Name
     {
         get => _name;
-        set => SetProperty(ref _name, value);
+        set => SetField(ref _name, value);
     }
 
-    public abstract double Price { get; }
+    public abstract double Price { get; set; }
+
+    public abstract string ShortDescription { get; }
+
+    #endregion
 
     protected Product(string name)
     {
-        Id = Guid.NewGuid();
-        Name = name;
+        _name = name;
     }
 
     public override bool Equals(object? obj)
@@ -51,6 +42,6 @@ public abstract class Product : INotifyPropertyChanged
 
     public override string ToString()
     {
-        return $"{Name} {Price}";
+        return $"Product(Name={Name}, Price={Price})";
     }
 }

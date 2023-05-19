@@ -1,87 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using DesktopApplication.Model;
 
 namespace DesktopApplication.Repository;
 
 public static class PizzaRepository
 {
-    public static ObservableCollection<Pizza> Pizzas { get; } = new()
+    private static List<Pizza> Pizzas { get; } = new()
     {
-        new Pizza("Pepperoni Feast", ReadIngredients(new[]
-            { "Tomato Sauce", "Extra Mozzarella Cheese", "Pepperoni", "Pepperoni" })),
-
-        new Pizza("Loaded Pepperoni Feast with Triple Cheese Blend", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Pepperoni", "Pepperoni", "Triple Cheese Blend" })),
-
-        new Pizza("Margherita", ReadIngredients(new[]
-            { "Tomato Sauce", "Extra Mozzarella Cheese" })),
-
-        new Pizza("Loaded Margherita with Triple Cheese Blend", ReadIngredients(new[]
-            { "Tomato Sauce", "Extra Mozzarella Cheese", "Triple Cheese Blend" })),
-
-        new Pizza("Loaded Chicken Supreme with Triple Cheese Blend", ReadIngredients(new[]
-        {
-            "Tomato Sauce", "Mozzarella Cheese", "Chicken", "Mushrooms", "Mixed Peppers", "Red Onions",
-            "Triple Cheese Blend"
-        })),
-
-
-        new Pizza("Hawaiian", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Ham", "Pineapple", })),
-
-        new Pizza("Loaded Hawaiian with Triple Cheese Blend", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Ham", "Pineapple", "Triple Cheese Blend" })),
-
-        new Pizza("Meat Feast", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Spicy Pork", "Ham", "Pepperoni", "Seasoned Minced Beef" })),
-
-        new Pizza("The Meaty One", ReadIngredients(new[]
-        {
-            "Tomato Sauce", "Mozzarella Cheese", "Spicy Pork", "Pepperoni", "Seasoned Minced Beef", "Smoked Bacon",
-            "Chicken"
-        })),
-
-        new Pizza("Farmhouse", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Ham", "Mushrooms" })),
-
-        new Pizza("Texan BBQ", ReadIngredients(new[]
-            { "BBQ Sauce", "Mozzarella Cheese", "Smoked Bacon", "Chicken" })),
-
-        new Pizza("BBQ Meat Feast", ReadIngredients(new[]
-            { "BBQ Sauce", "Mozzarella Cheese", "Spicy Pork", "Ham", "Pepperoni", "Seasoned Minced Beef" })),
-
-        new Pizza("Veggie Sizzler", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Green Chillies", "Jalapeños", "Mixed Peppers", "Red Onions" })),
-
-        new Pizza("Beef Sizzler", ReadIngredients(new[]
-        {
-            "Tomato Sauce", "Mozzarella Cheese", "Green Chillies", "Jalapeños", "Seasoned Minced Beef", "Red Onions"
-        })),
-
-        new Pizza("Chicken Sizzler", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Green Chillies", "Jalapeños", "Chicken", "Red Onions" })),
-
-        new Pizza("Supreme", ReadIngredients(new[]
-        {
-            "Tomato Sauce", "Mozzarella Cheese", "Pepperoni", "Seasoned Minced Beef", "Spicy Pork", "Mushrooms",
-            "Mixed Peppers", "Red Onions"
-        })),
-
-        new Pizza("Vegetable Supreme", ReadIngredients(new[]
-            { "Tomato Sauce", "Mozzarella Cheese", "Mushrooms", "Mixed Peppers", "Red Onions", "Tomato" })),
-
-        new Pizza("Chicken Supreme", ReadIngredients(new[] 
-            { "Tomato Sauce", "Mozzarella Cheese", "Chicken", "Mushrooms", "Mixed Peppers", "Red Onions" }))
+        new Pizza("Pepperoni Feast", 18.99),
+        new Pizza("Loaded Pepperoni Feast with Triple Cheese Blend", 20.99),
+        new Pizza("Margherita", 14.99),
+        new Pizza("Loaded Margherita with Triple Cheese Blend", 16.99),
+        new Pizza("Loaded Chicken Supreme with Triple Cheese Blend", 20.99),
+        new Pizza("Hawaiian", 17.99),
+        new Pizza("Loaded Hawaiian with Triple Cheese Blend", 19.99),
+        new Pizza("Meat Feast", 18.99),
+        new Pizza("The Meaty One", 20.99),
+        new Pizza("Farmhouse", 19.99),
+        new Pizza("Texan BBQ", 20.99),
+        new Pizza("BBQ Meat Feast", 20.99),
+        new Pizza("Veggie Sizzler", 18.99),
+        new Pizza("Beef Sizzler", 20.99),
+        new Pizza("Chicken Sizzler", 20.99),
+        new Pizza("Supreme", 20.99),
+        new Pizza("Vegetable Supreme", 18.99),
+        new Pizza("Chicken Supreme", 20.99)
     };
-
-    private static ObservableCollection<Ingredient> ReadIngredients(string[] names)
-    {
-        return new ObservableCollection<Ingredient>(IngredientRepository.Read(names));
-    }
-
+    
     public static void Create(Pizza pizza) => Pizzas.Add(pizza);
 
     public static void CreateAll(List<Pizza> pizzas)
@@ -96,7 +41,7 @@ public static class PizzaRepository
 
     public static Pizza Read(int id) => Pizzas[id];
 
-    public static ObservableCollection<Pizza> ReadAll() => Pizzas;
+    public static List<Pizza> ReadAll() => Pizzas;
 
 
     public static void Update(int id, Pizza pizza) => Pizzas[id] = pizza;
@@ -107,5 +52,4 @@ public static class PizzaRepository
     public static void Delete(Pizza pizza) => Pizzas.Remove(pizza);
 
     public static void DeleteAll() => Pizzas.Clear();
-
 }

@@ -1,47 +1,17 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using DesktopApplication.Repository;
-using static DesktopApplication.Model.IngredientType;
 
 namespace DesktopApplication.Model;
 
-public class Pizza : BaseModel, ICloneable
+public class Pizza : Product, ICloneable
 {
-    private Guid Id { get; } = Guid.NewGuid();
+    private Crust _crust;
 
-    #region Name
-
-    private string _name;
-
-    public string Name
-    {
-        get => _name;
-        set => SetField(ref _name, value);
-    }
-
-    #endregion
-
-    #region Price
+    private readonly double _basePrice;
 
     private double _price;
 
-
-    public double Price
-    {
-        get => Ingredients.ToList().FindAll(i => i.Type == Extra).Count * Crust.IngredientPrice + Crust.Price;
-        set => SetField(ref _price,
-            Ingredients.ToList().FindAll(i => i.Type == Extra).Count * Crust.IngredientPrice + Crust.Price);
-    }
-    //
-    // public double Price =>
-    //     Ingredients.ToList().FindAll(i => i.Type == Extra).Count * Crust.IngredientPrice + Crust.Price;
-
-    #endregion
-
-    #region Crust
-
-    private Crust _crust;
+    #region Properties
 
     public Crust Crust
     {
@@ -49,38 +19,31 @@ public class Pizza : BaseModel, ICloneable
         set
         {
             SetField(ref _crust, value);
-            // SetField(ref _price,
-            //     Ingredients.ToList().FindAll(i => i.Type == Extra).Count * Crust.IngredientPrice + Crust.Price);
-            OnPropertyChanged(nameof(Price));
+            Price = _basePrice * Crust.Multiplier;
         }
     }
 
-    #endregion
-
-    #region Ingredients
-
-    private ObservableCollection<Ingredient> _ingredients;
-
-    public ObservableCollection<Ingredient> Ingredients
+    public override double Price
     {
-        get => _ingredients;
-        set => SetField(ref _ingredients, value);
+        get => _price;
+        set => SetField(ref _price, value);
     }
 
+    public override string ShortDescription => Crust.Name;
+
     #endregion
 
-    public Pizza(string name, Crust crust, ObservableCollection<Ingredient> ingredients)
+    public Pizza(string name, double price, Crust crust) : base(name)
     {
-        _name = name;
+        _basePrice = price;
         _crust = crust;
-        _ingredients = ingredients;
+        _price = price;
+        Crust = crust;
     }
 
-    public Pizza(string name, ObservableCollection<Ingredient> ingredients)
+    public Pizza(string name, double price) : this(name, price,
+        CrustRepository.Read("Large Classic"))
     {
-        _name = name;
-        _crust = CrustRepository.Read(0);
-        _ingredients = ingredients;
     }
 
     public override bool Equals(object? obj)
@@ -89,22 +52,21 @@ public class Pizza : BaseModel, ICloneable
                Id.Equals(pizza.Id) &&
                Name.Equals(pizza.Name) &&
                Price.Equals(pizza.Price) &&
-               Crust.Equals(pizza.Crust) &&
-               Ingredients.Equals(pizza.Ingredients);
+               Crust.Equals(pizza.Crust);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Id, Name, Price, Crust, Ingredients);
+        return HashCode.Combine(Id, Name, Price, Crust);
     }
 
     public object Clone()
     {
-        return new Pizza(Name, Crust, Ingredients);
+        return new Pizza(Name, Price, Crust);
     }
 
     public override string ToString()
     {
-        return $"Pizza(Name={Name}, Price={Price}, Crust={Crust}, Ingredients={Ingredients})";
+        return $"Pizza(Name={Name}, Price={Price}, Crust={Crust})";
     }
 }

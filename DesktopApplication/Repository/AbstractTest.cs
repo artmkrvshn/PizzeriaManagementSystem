@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopApplication.Model;
-
-public enum IngredientType
+namespace DesktopApplication.Repository
 {
-    Cheese,
-    Sauce,
-    Extra
+    internal class AbstractTest
+    {
+    }
 }

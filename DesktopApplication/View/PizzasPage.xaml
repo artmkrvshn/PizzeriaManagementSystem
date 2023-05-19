@@ -6,11 +6,13 @@
       xmlns:local="clr-namespace:DesktopApplication.View"
       xmlns:model="clr-namespace:DesktopApplication.Model"
       xmlns:viewModel="clr-namespace:DesktopApplication.ViewModel"
+      xmlns:repository="clr-namespace:DesktopApplication.Repository"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PizzasPage">
     <Page.DataContext>
         <viewModel:PizzasPageViewModel />
+        <!-- <viewModel:RepositoryViewModel /> -->
     </Page.DataContext>
     <Page.Resources>
         <DataTemplate x:Key="PizzaCardDataTemplate" DataType="{x:Type model:PizzaCard}">
@@ -26,18 +28,21 @@
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Source="{Binding ImageUri}" Stretch="Fill" />
                     <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
-                        <TextBlock Text="{Binding Product.Name, Mode=TwoWay}" FontSize="16" TextWrapping="Wrap"
+                        <TextBlock Text="{Binding Product.Name}" FontSize="16" TextWrapping="Wrap"
                                    FontWeight="SemiBold" />
                         <TextBlock Text="{Binding Description}" FontSize="16" TextWrapping="Wrap"
                                    TextTrimming="CharacterEllipsis" />
                     </StackPanel>
                     <TextBlock Grid.Row="2" Text="Select your size &amp; crust" FontSize="16"
                                Margin="10, 0" VerticalAlignment="Bottom" />
+                    <!-- ItemsSource="{Binding DataContext.CrustTypeValues, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" -->
+
+                    <!-- ItemsSource="{Binding Crusts, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type viewModel:ManagementWindowViewModel}}}" -->
+
+
                     <ComboBox x:Name="crustComboBox"
                               Grid.Row="3" Margin="10, 5"
-
-                              ItemsSource="{Binding DataContext.CrustTypeValues, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
-
+                              ItemsSource="{Binding DataContext.Crusts, RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                               DisplayMemberPath="Name"
                               SelectedItem="{Binding Product.Crust}"
                               FontSize="16"
@@ -93,7 +98,7 @@
     </Page.Resources>
     <Grid>
         <ItemsControl
-            ItemsSource="{Binding Path=PizzaCards }"
+            ItemsSource="{Binding Path=PizzaCards, UpdateSourceTrigger=PropertyChanged }"
             Style="{StaticResource PizzaCardItemsControlStyle}" />
     </Grid>
 </Page>

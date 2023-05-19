@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace DesktopApplication.Model;
 
 public class Crust : BaseModel, ICloneable
 {
     private string _name;
-    private double _price;
-    private double _ingredientPrice;
+
+    private double _multiplier;
+
+    #region Properties
 
     public string Name
     {
@@ -17,45 +16,39 @@ public class Crust : BaseModel, ICloneable
         set => SetField(ref _name, value);
     }
 
-    public double Price
+    public double Multiplier
     {
-        get => _price;
-        set => SetField(ref _price, value);
+        get => _multiplier;
+        set => SetField(ref _multiplier, value);
     }
-
-    public double IngredientPrice
+    
+    #endregion
+    
+    public Crust(string name, double multiplier)
     {
-        get => _ingredientPrice;
-        set => SetField(ref _ingredientPrice, value);
-    }
-
-    public Crust(string name, double price, double ingredientPrice)
-    {
-        Name = name;
-        Price = price;
-        IngredientPrice = ingredientPrice;
+        _name = name;
+        _multiplier = multiplier;
     }
 
     public override bool Equals(object? obj)
     {
         return obj is Crust crust &&
                Name.Equals(crust.Name) &&
-               Price.Equals(crust.Price) &&
-               IngredientPrice.Equals(crust.IngredientPrice);
+               Multiplier.Equals(crust.Multiplier);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Name, Price, IngredientPrice);
+        return HashCode.Combine(Name, Multiplier);
     }
 
     public override string ToString()
     {
-        return $"Crust(Name={Name}, Price={Price}, IngredientPrice={IngredientPrice})";
+        return $"Crust(Name={Name}, Multiplier={Multiplier})";
     }
 
     public object Clone()
     {
-        return new Crust(Name, Price, IngredientPrice);
+        return new Crust(Name, Multiplier);
     }
 }

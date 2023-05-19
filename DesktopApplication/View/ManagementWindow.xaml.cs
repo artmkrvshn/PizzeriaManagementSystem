@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DesktopApplication.Model;
+using DesktopApplication.Repository;
 
 namespace DesktopApplication.View
 {
@@ -31,6 +32,13 @@ namespace DesktopApplication.View
             var comboBox = sender as ComboBox;
             var selectedPizza = comboBox.DataContext as Pizza;
             selectedPizza.Crust = comboBox.SelectedItem as Crust;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Click");
+            PizzasDataGrid.Items.Refresh();
+            CrustsDataGrid.Items.Refresh();
         }
     }
 }

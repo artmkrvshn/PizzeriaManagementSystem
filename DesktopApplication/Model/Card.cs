@@ -8,7 +8,7 @@ public class Card<T> : BaseModel
     private string _description;
     private Uri _imageUri;
 
-    #region Переназови 
+    #region Properties 
 
     public T Product
     {
@@ -30,7 +30,7 @@ public class Card<T> : BaseModel
 
     #endregion
 
-    public Card(T product, string description, string image)
+    protected Card(T product, string description, string image)
     {
         _product = product;
         _description = description;
