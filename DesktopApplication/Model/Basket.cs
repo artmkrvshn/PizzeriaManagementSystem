@@ -3,17 +3,20 @@ using System.Linq;
 
 namespace DesktopApplication.Model;
 
-public class Basket
+public class Basket : BaseModel
 {
-    public ObservableCollection<Pizza> Products { get; set; } = new();
+    public ObservableCollection<Product> Products { get; set; } = new();
 
-    public double Price { get; set; }
+    private double _price;
+
+    public double Price
+    {
+        get => _price;
+        private set => SetField(ref _price, value);
+    }
 
     public Basket()
     {
-        Products.CollectionChanged += (sender, args) =>
-        {
-            Price = Products.Sum(prod => prod.Price);
-        };
+        Products.CollectionChanged += (sender, args) => { Price = Products.Sum(prod => prod.Price); };
     }
 }

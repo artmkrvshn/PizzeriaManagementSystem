@@ -2,11 +2,13 @@
 
 namespace DesktopApplication.Model;
 
-public abstract class Product : BaseModel
+public abstract class Product : BaseModel, ICloneable
 {
     protected Guid Id { get; } = Guid.NewGuid();
 
     private string _name;
+
+    private double _price;
 
     #region Properties
 
@@ -16,15 +18,18 @@ public abstract class Product : BaseModel
         set => SetField(ref _name, value);
     }
 
-    public abstract double Price { get; set; }
-
-    public abstract string ShortDescription { get; }
+    public double Price
+    {
+        get => _price;
+        set => SetField(ref _price, value);
+    }
 
     #endregion
 
-    protected Product(string name)
+    protected Product(string name, double price)
     {
         _name = name;
+        _price = price;
     }
 
     public override bool Equals(object? obj)
@@ -44,4 +49,6 @@ public abstract class Product : BaseModel
     {
         return $"Product(Name={Name}, Price={Price})";
     }
+
+    public abstract object Clone();
 }

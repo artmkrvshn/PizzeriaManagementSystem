@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\7up-1500ml.jpg" />
+    <None Remove="Images\7up-500ml.jpg" />
     <None Remove="Images\background.jpg" />
     <None Remove="Images\bbq-meatfeast.jpg" />
     <None Remove="Images\card-payment-icons.png" />
@@ -23,15 +25,25 @@
     <None Remove="Images\meat-feast.jpg" />
     <None Remove="Images\meaty-one.jpg" />
     <None Remove="Images\pepperoni-feast.jpg" />
+    <None Remove="Images\pepsi-diet-1500ml.jpg" />
+    <None Remove="Images\pepsi-diet-500ml.jpg" />
+    <None Remove="Images\pepsi-max-1500ml.jpg" />
+    <None Remove="Images\pepsi-max-500ml.jpg" />
+    <None Remove="Images\pepsi-max-cherry-1500ml.jpg" />
+    <None Remove="Images\pepsi-regular-1500ml.jpg" />
+    <None Remove="Images\pepsi-regular-500ml.jpg" />
     <None Remove="Images\pizza-logo.jpg" />
     <None Remove="Images\pizzeria-logo.png" />
     <None Remove="Images\plogo.png" />
     <None Remove="Images\plogo2.png" />
     <None Remove="Images\texan-bbq.jpg" />
     <None Remove="Images\veg-sizzler.jpg" />
+    <None Remove="Images\water-500ml.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\7up-1500ml.jpg" />
+    <Resource Include="Images\7up-500ml.jpg" />
     <Resource Include="Images\background.jpg" />
     <Resource Include="Images\bbq-meatfeast.jpg" />
     <Resource Include="Images\card-payment-icons.png" />
@@ -47,9 +59,17 @@
     <Resource Include="Images\meat-feast.jpg" />
     <Resource Include="Images\meaty-one.jpg" />
     <Resource Include="Images\pepperoni-feast.jpg" />
+    <Resource Include="Images\pepsi-diet-1500ml.jpg" />
+    <Resource Include="Images\pepsi-diet-500ml.jpg" />
+    <Resource Include="Images\pepsi-max-1500ml.jpg" />
+    <Resource Include="Images\pepsi-max-500ml.jpg" />
+    <Resource Include="Images\pepsi-max-cherry-1500ml.jpg" />
+    <Resource Include="Images\pepsi-regular-1500ml.jpg" />
+    <Resource Include="Images\pepsi-regular-500ml.jpg" />
     <Resource Include="Images\pizza-logo.jpg" />
     <Resource Include="Images\texan-bbq.jpg" />
     <Resource Include="Images\veg-sizzler.jpg" />
+    <Resource Include="Images\water-500ml.jpg" />
   </ItemGroup>
 
 </Project>

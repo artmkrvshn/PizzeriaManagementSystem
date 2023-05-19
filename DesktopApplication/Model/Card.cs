@@ -5,7 +5,11 @@ namespace DesktopApplication.Model;
 public class Card<T> : BaseModel
 {
     private T _product;
+
     private string _description;
+
+    private string _image;
+
     private Uri _imageUri;
 
     #region Properties 
@@ -22,6 +26,12 @@ public class Card<T> : BaseModel
         set => SetField(ref _description, value);
     }
 
+    public string Image
+    {
+        get => _image;
+        set => SetField(ref _image, value);
+    }
+
     public Uri ImageUri
     {
         get => _imageUri;
@@ -30,10 +40,11 @@ public class Card<T> : BaseModel
 
     #endregion
 
-    protected Card(T product, string description, string image)
+    public Card(T product, string description, string image)
     {
         _product = product;
         _description = description;
+        _image = image;
         _imageUri = new Uri($"pack://application:,,,/DesktopApplication;component/Images/{image}", UriKind.Absolute);
     }
 }

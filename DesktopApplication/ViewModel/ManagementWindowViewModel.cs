@@ -41,32 +41,21 @@ class ManagementWindowViewModel : ViewModelBase
 
     public ObservableCollection<Pizza> Pizzas { get; set; } = new(PizzaRepository.ReadAll());
 
-    public ObservableCollection<Crust> Crusts { get; set; } = new(CrustRepository.ReadAll());
+    // public ObservableCollection<Crust> Crusts { get; set; } = new(CrustRepository.ReadAll());
 
     public ObservableCollection<PizzaCard> PizzaCards { get; set; } = new(PizzaCardRepository.ReadAll());
 
-    
+    public ObservableCollection<User> Users { get; set; } = new(UserRepository.ReadAll());
 
-    public ICommand SaveCommand { get; }
-    public ICommand ShowDBCommand { get; }
-    public ICommand ShowVMCommand { get; }
+
+    // public ICommand SaveCommand { get; }
+    // public ICommand ShowDBCommand { get; }
+    // public ICommand ShowVMCommand { get; }
 
     public ManagementWindowViewModel()
     {
-        SaveCommand = new RelayCommand(p => true, p => Save());
+        // SaveCommand = new RelayCommand(p => true, p => Save());
         // ShowDBCommand = new RelayCommand(p => true, p => ShowCrusts("DB", CrustRepository.ReadAll()));
         // ShowVMCommand = new RelayCommand(p => true, p => ShowCrusts("VM", Crusts.ToList()));
-    }
-
-    private void Save()
-    {
-        CrustRepository.ClearAndCreateAll(Crusts.ToList());
-    }
-
-    private void ShowCrusts(string msg, List<Crust> crusts)
-    {
-        StringBuilder sb = new($"{msg}: \n");
-        crusts.ForEach(c => sb.Append($"{c.Name}, {c.Multiplier}\n"));
-        MessageBox.Show(sb.ToString());
     }
 }

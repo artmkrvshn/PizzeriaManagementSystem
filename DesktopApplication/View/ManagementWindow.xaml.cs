@@ -27,18 +27,9 @@ namespace DesktopApplication.View
             InitializeComponent();
         }
 
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid_OnAddingNewItem(object? sender, AddingNewItemEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-            var selectedPizza = comboBox.DataContext as Pizza;
-            selectedPizza.Crust = comboBox.SelectedItem as Crust;
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Click");
-            PizzasDataGrid.Items.Refresh();
-            CrustsDataGrid.Items.Refresh();
+            MessageBox.Show("new Item");
         }
     }
 }

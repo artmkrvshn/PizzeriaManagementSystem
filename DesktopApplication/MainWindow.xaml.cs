@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DesktopApplication.Model;
 using DesktopApplication.View;
+using DesktopApplication.ViewModel;
 
 namespace DesktopApplication
 {
@@ -27,16 +29,20 @@ namespace DesktopApplication
         }
 
         private readonly PizzasPage _pizzasPage = new();
-        // private readonly DrinksPage _drinksPage = new();
+        private readonly DrinksPage _drinksPage = new();
         // private readonly LogInWindow _logInWindow = new();
         // private readonly SignUpWindow _signUpWindow = new();
 
 
         private void PizzasPageRadioButton_Checked(object sender, RoutedEventArgs e) => ContentFrame.Navigate(_pizzasPage);
 
-        private void DrinksPageRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void DrinksPageRadioButton_Checked(object sender, RoutedEventArgs e) => ContentFrame.Navigate(_drinksPage);
+
+        private void DeleteProductButton_OnClick(object sender, RoutedEventArgs e)
         {
-            // ContentFrame.Navigate(_drinksPage);
+            Product product = (Product)((Button)sender).DataContext;
+            Product toRemove = MainWindowViewModel.Basket.Products.First(prod => product.Equals(prod));
+            MainWindowViewModel.Basket.Products.Remove(toRemove);
         }
     }
 }

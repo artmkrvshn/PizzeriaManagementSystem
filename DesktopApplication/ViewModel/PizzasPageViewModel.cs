@@ -9,7 +9,6 @@ namespace DesktopApplication.ViewModel;
 public class PizzasPageViewModel : ViewModelBase
 {
     private ObservableCollection<PizzaCard> _pizzaCards = new(PizzaCardRepository.ReadAll());
-    private ObservableCollection<Crust> _crusts = new(CrustRepository.ReadAll());
 
     #region Properties
 
@@ -17,12 +16,6 @@ public class PizzasPageViewModel : ViewModelBase
     {
         get => _pizzaCards;
         set => SetProperty(ref _pizzaCards, value);
-    }
-    
-    public ObservableCollection<Crust> Crusts
-    {
-        get => _crusts;
-        set => SetProperty(ref _crusts, value);
     }
 
     #endregion
