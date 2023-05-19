@@ -2,9 +2,9 @@
 
 namespace DesktopApplication.Model;
 
-public class Card<T> : BaseModel
+public class Card : BaseModel
 {
-    private T _product;
+    private Product _product;
 
     private string _description;
 
@@ -14,7 +14,7 @@ public class Card<T> : BaseModel
 
     #region Properties 
 
-    public T Product
+    public Product Product
     {
         get => _product;
         set => SetField(ref _product, value);
@@ -40,7 +40,7 @@ public class Card<T> : BaseModel
 
     #endregion
 
-    public Card(T product, string description, string image)
+    public Card(Product product, string description, string image)
     {
         _product = product;
         _description = description;

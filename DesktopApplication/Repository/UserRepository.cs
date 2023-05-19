@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DesktopApplication.Model;
 
 namespace DesktopApplication.Repository;
 
-public class UserRepository
+public static class UserRepository
 {
     private static List<User> Users { get; } = new()
     {

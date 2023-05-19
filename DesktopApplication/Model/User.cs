@@ -4,7 +4,7 @@ namespace DesktopApplication.Model;
 
 public class User
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = new Guid();
 
     public string Email { get; set; }
 
@@ -15,7 +15,6 @@ public class User
 
     public User(string email, string password, UserRole userRole)
     {
-        Id = new Guid();
         Email = email;
         Password = password;
         UserRole = userRole;

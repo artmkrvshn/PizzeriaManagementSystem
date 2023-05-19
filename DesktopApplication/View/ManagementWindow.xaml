@@ -37,7 +37,16 @@
             </TabItem>
 
             <TabItem Header="Drinks">
-
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="True" AddingNewItem="DataGrid_OnAddingNewItem"
+                          CanUserDeleteRows="True"
+                          ItemsSource="{Binding Path=DrinkCards}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Path=Product.Name}" Width="Auto" />
+                        <DataGridTextColumn Header="Price" Binding="{Binding Path=Product.Price}" Width="Auto" />
+                        <DataGridTextColumn Header="Description" Binding="{Binding Path=Description}" Width="*" />
+                        <DataGridTextColumn Header="Image" Binding="{Binding Path=Image}" Width="Auto" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </TabItem>
 
             <TabItem Header="Others" />

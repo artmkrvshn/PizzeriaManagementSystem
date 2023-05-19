@@ -8,11 +8,11 @@ namespace DesktopApplication.ViewModel;
 
 public class PizzasPageViewModel : ViewModelBase
 {
-    private ObservableCollection<PizzaCard> _pizzaCards = new(PizzaCardRepository.ReadAll());
+    private ObservableCollection<Card> _pizzaCards = new(PizzaCardRepository.ReadAll());
 
     #region Properties
 
-    public ObservableCollection<PizzaCard> PizzaCards
+    public ObservableCollection<Card> PizzaCards
     {
         get => _pizzaCards;
         set => SetProperty(ref _pizzaCards, value);

@@ -11,5 +11,5 @@ namespace DesktopApplication.ViewModel;
 
 public class DrinksPageViewModel
 {
-    public ObservableCollection<DrinkCard> DrinkCards { get; } = new(DrinkCardRepository.ReadAll());
+    public ObservableCollection<Card> DrinkCards { get; } = new(DrinkCardRepository.ReadAll());
 }

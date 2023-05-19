@@ -29,7 +29,7 @@ namespace DesktopApplication.View
         
         private void AddProductToBasketButton_Click(object sender, RoutedEventArgs e)
         {
-            DrinkCard example = (DrinkCard)((Button)sender).DataContext;
+            Card example = (Card)((Button)sender).DataContext;
             Drink drink= (Drink)example.Product.Clone();
             MainWindowViewModel.Basket.Products.Add(drink);
         }

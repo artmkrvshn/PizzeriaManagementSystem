@@ -4,7 +4,7 @@ namespace DesktopApplication.Model;
 
 public abstract class Product : BaseModel, ICloneable
 {
-    protected Guid Id { get; } = Guid.NewGuid();
+    private Guid Id { get; } = Guid.NewGuid();
 
     private string _name;
 
@@ -32,23 +32,23 @@ public abstract class Product : BaseModel, ICloneable
         _price = price;
     }
 
-    public override bool Equals(object? obj)
-    {
-        return obj is Product product &&
-               Id.Equals(product.Id) &&
-               Name.Equals(product.Name) &&
-               Price.Equals(product.Price);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Id, Name, Price);
-    }
-
-    public override string ToString()
-    {
-        return $"Product(Name={Name}, Price={Price})";
-    }
+    // public override bool Equals(object? obj)
+    // {
+    //     return obj is Product product &&
+    //            Id.Equals(product.Id) &&
+    //            Name.Equals(product.Name) &&
+    //            Price.Equals(product.Price);
+    // }
+    //
+    // public override int GetHashCode()
+    // {
+    //     return HashCode.Combine(Id, Name, Price);
+    // }
+    //
+    // public override string ToString()
+    // {
+    //     return $"Product(Name={Name}, Price={Price})";
+    // }
 
     public abstract object Clone();
 }

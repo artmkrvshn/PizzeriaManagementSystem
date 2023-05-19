@@ -43,7 +43,9 @@ class ManagementWindowViewModel : ViewModelBase
 
     // public ObservableCollection<Crust> Crusts { get; set; } = new(CrustRepository.ReadAll());
 
-    public ObservableCollection<PizzaCard> PizzaCards { get; set; } = new(PizzaCardRepository.ReadAll());
+    public ObservableCollection<Card> PizzaCards { get; set; } = new(PizzaCardRepository.ReadAll());
+
+    public ObservableCollection<Card> DrinkCards { get; set; } = new(DrinkCardRepository.ReadAll());
 
     public ObservableCollection<User> Users { get; set; } = new(UserRepository.ReadAll());
 

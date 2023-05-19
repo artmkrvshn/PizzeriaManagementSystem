@@ -1,14 +1,9 @@
 ﻿using DesktopApplication.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static DesktopApplication.Model.Drink;
 
 namespace DesktopApplication.Repository;
 
-public class DrinkRepository
+public static class DrinkRepository
 {
     private static List<Drink> Drinks { get; } = new()
     {
