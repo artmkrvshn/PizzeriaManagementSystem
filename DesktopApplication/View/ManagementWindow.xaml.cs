@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using DesktopApplication.Model;
 using DesktopApplication.Repository;
+using DesktopApplication.ViewModel;
 
 namespace DesktopApplication.View
 {
@@ -26,10 +16,21 @@ namespace DesktopApplication.View
         {
             InitializeComponent();
         }
-
-        private void DataGrid_OnAddingNewItem(object? sender, AddingNewItemEventArgs e)
+        
+        private void PizzasDataGrid_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show("new Item");
+            if (PizzasDataGrid.SelectedIndex < 0) return;
+            Card card = (PizzasDataGrid.SelectedItem as Card)!;
+            PizzasPageViewModel.PizzaCards.Remove(card);
+            PizzaCardRepository.Delete(card);
+        }
+
+        private void DrinksDataGrid_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (DrinksDataGrid.SelectedIndex < 0) return;
+            Card? card = (DrinksDataGrid.SelectedItem as Card)!;
+            DrinksPageViewModel.DrinkCards.Remove(card);
+            DrinkCardRepository.Delete(card);
         }
     }
 }

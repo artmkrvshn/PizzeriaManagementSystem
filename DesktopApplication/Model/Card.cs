@@ -23,7 +23,11 @@ public class Card : BaseModel
     public string Description
     {
         get => _description;
-        set => SetField(ref _description, value);
+        set
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            SetField(ref _description, value);
+        }
     }
 
     public string Image
@@ -39,7 +43,7 @@ public class Card : BaseModel
     }
 
     #endregion
-
+    
     public Card(Product product, string description, string image)
     {
         _product = product;

@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopApplication", "DesktopApplication\DesktopApplication.csproj", "{0B63775E-98DD-4A1B-BDE5-6B574C2F1AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDemo", "ConsoleDemo\ConsoleDemo.csproj", "{D0C98FC3-E762-47DD-8341-146A47C1ACB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleDemo", "ConsoleDemo\ConsoleDemo.csproj", "{D0C98FC3-E762-47DD-8341-146A47C1ACB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzeriaTest", "PizzeriaTest\PizzeriaTest.csproj", "{91A127E1-4E39-4583-8D83-6F94871C049A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D0C98FC3-E762-47DD-8341-146A47C1ACB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0C98FC3-E762-47DD-8341-146A47C1ACB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0C98FC3-E762-47DD-8341-146A47C1ACB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A127E1-4E39-4583-8D83-6F94871C049A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A127E1-4E39-4583-8D83-6F94871C049A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A127E1-4E39-4583-8D83-6F94871C049A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A127E1-4E39-4583-8D83-6F94871C049A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

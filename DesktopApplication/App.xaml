@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DesktopApplication"
              xmlns:model="clr-namespace:DesktopApplication.Model"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-
         <!-- Add Product to Basket Button -->
         <Style x:Key="ButtonAddProductStyle" TargetType="Button">
             <Setter Property="Background" Value="ForestGreen" />
@@ -122,9 +121,9 @@
                                 <Setter Property="Background" TargetName="border" Value="#f5f5f5" />
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#D80000" />
+                                <Setter Property="Background" TargetName="border" Value="ForestGreen" />
                                 <Setter Property="Foreground" Value="White" />
-                                <Setter Property="BorderBrush" TargetName="border" Value="#D80000" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="ForestGreen" />
                             </Trigger>
                             <Trigger Property="IsChecked" Value="False">
                                 <Setter Property="Background" Value="White" />
@@ -140,7 +139,7 @@
         </Style>
 
         <!-- Checkout Button -->
-        <Style x:Key="CheckoutButtonStyle" TargetType="Button">
+        <Style x:Key="GreenRoundButtonStyle" TargetType="Button">
             <Setter Property="Height" Value="45" />
             <Setter Property="Background" Value="ForestGreen" />
             <Setter Property="Foreground" Value="White" />
@@ -171,32 +170,19 @@
         </Style>
 
         <!-- Sign In, Sign Up Buttons -->
-        <Style x:Key="RedRoundButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="18" />
-            <Setter Property="Background" Value="#D80000" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="5, 0"></Setter>
+        <Style x:Key="MenuButtonStyle" TargetType="Button" BasedOn="{StaticResource GreenRoundButtonStyle}">
             <Setter Property="MinWidth" Value="90" />
             <Setter Property="Height" Value="50" />
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="Border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="0"
-                                CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="Margin" Value="5, 0" />
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkRed" />
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
                 </Trigger>
             </Style.Triggers>
         </Style>
+
     </Application.Resources>
 </Application>

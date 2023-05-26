@@ -1,63 +1,95 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using DesktopApplication.Model;
+﻿using DesktopApplication.Model;
 using DesktopApplication.Repository;
-using DesktopApplication.View;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace DesktopApplication.ViewModel;
 
 class ManagementWindowViewModel : ViewModelBase
 {
-    // private ObservableCollection<Pizza> _pizzas = new(PizzaRepository.ReadAll());
-    //
-    // public ObservableCollection<Pizza> Pizzas
-    // {
-    //     get => _pizzas;
-    //     set => SetProperty(ref _pizzas, value);
-    // }
-    //
-    // private ObservableCollection<Crust> _crusts = new(CrustRepository.ReadAll());
-    //
-    // public ObservableCollection<Crust> Crusts
-    // {
-    //     get => _crusts;
-    //     set
-    //     {
-    //         SetProperty(ref _crusts, value);
-    //         OnPropertyChanged(nameof(Pizzas));
-    //     }
-    // }
-    //
-    // private void ComboBoxTest_OnSelectionChanged()
-    // {
-    //     throw new NotImplementedException();
-    // }
+    private string _name = "Name";
 
-    public ObservableCollection<Pizza> Pizzas { get; set; } = new(PizzaRepository.ReadAll());
+    private double _price = 0.99;
 
-    // public ObservableCollection<Crust> Crusts { get; set; } = new(CrustRepository.ReadAll());
+    private string _description = "Description";
 
-    public ObservableCollection<Card> PizzaCards { get; set; } = new(PizzaCardRepository.ReadAll());
+    private int _volume = 250;
 
-    public ObservableCollection<Card> DrinkCards { get; set; } = new(DrinkCardRepository.ReadAll());
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            SetProperty(ref _name, value);
+        }
+    }
 
-    public ObservableCollection<User> Users { get; set; } = new(UserRepository.ReadAll());
+    public double Price
+    {
+        get => _price;
+        set
+        {
+            if (value <= 0) return;
+            SetProperty(ref _price, value);
+        }
+    }
 
+    public int Volume
+    {
+        get => _volume;
+        set
+        {
+            if (value <= 0) return;
+            SetProperty(ref _volume, value);
+        }
+    }
 
-    // public ICommand SaveCommand { get; }
-    // public ICommand ShowDBCommand { get; }
-    // public ICommand ShowVMCommand { get; }
+    public string Description
+    {
+        get => _description;
+        set
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            SetProperty(ref _description, value);
+        }
+    }
+
+    public ObservableCollection<Card> PizzaCards { get; } = new(PizzaCardRepository.ReadAll());
+
+    public ObservableCollection<Card> DrinkCards { get; } = new(DrinkCardRepository.ReadAll());
+
+    public ObservableCollection<User> Users { get; } = new(UserRepository.ReadAll());
+
+    public ObservableCollection<Order> Orders { get; } = new(OrderRepository.ReadAll());
+
+    public ICommand AddPizzaCommand { get; }
+
+    public ICommand AddDrinkCommand { get; }
 
     public ManagementWindowViewModel()
     {
-        // SaveCommand = new RelayCommand(p => true, p => Save());
-        // ShowDBCommand = new RelayCommand(p => true, p => ShowCrusts("DB", CrustRepository.ReadAll()));
-        // ShowVMCommand = new RelayCommand(p => true, p => ShowCrusts("VM", Crusts.ToList()));
+        AddPizzaCommand = new RelayCommand(_ => FieldsNotEmpty(), _ => AddPizza());
+        AddDrinkCommand = new RelayCommand(_ => FieldsNotEmpty(), _ => AddDrink());
+    }
+
+    private bool FieldsNotEmpty() => !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Description);
+
+    private void AddPizza()
+    {
+        Pizza pizza = new(Name, Price);
+        Card card = new(pizza, Description, "pepperoni-feast.jpg");
+        PizzaRepository.Create(pizza);
+        PizzaCardRepository.Create(card);
+        PizzaCards.Add(card);
+    }
+    
+    private void AddDrink()
+    {
+        Drink drink = new(Name, Price, Volume);
+        Card card = new(drink, Description, "water-500ml.jpg");
+        DrinkRepository.Create(drink);
+        DrinkCardRepository.Create(card);
+        DrinkCards.Add(card);
     }
 }

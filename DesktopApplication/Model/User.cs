@@ -1,17 +1,12 @@
-﻿using System;
+﻿namespace DesktopApplication.Model;
 
-namespace DesktopApplication.Model;
-
-public class User
+public class User : IUser
 {
-    public Guid Id { get; set; } = new Guid();
-
     public string Email { get; set; }
 
     public string Password { get; set; }
 
     public UserRole UserRole { get; set; }
-
 
     public User(string email, string password, UserRole userRole)
     {

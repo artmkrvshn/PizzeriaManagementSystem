@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DesktopApplication.Model;
+using System;
 using System.Collections.Generic;
-using DesktopApplication.Model;
 
 namespace DesktopApplication.Repository;
 
@@ -8,8 +8,8 @@ public static class UserRepository
 {
     private static List<User> Users { get; } = new()
     {
-        new User("admin@gmail.com", "admin", UserRole.Administrator), 
-        new User("user@gmail.com", "user", UserRole.Customer), 
+        new User("admin@gmail.com", "admin", UserRole.Administrator),
+        new User("user@gmail.com", "user", UserRole.Customer),
     };
 
     public static void Create(User user) => Users.Add(user);

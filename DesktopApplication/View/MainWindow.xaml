@@ -1,4 +1,4 @@
-﻿<Window x:Class="DesktopApplication.MainWindow"
+﻿<Window x:Class="DesktopApplication.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -42,21 +42,19 @@
                                  Checked="PizzasPageRadioButton_Checked" Style="{StaticResource MenuToggleButtonStyle}" />
                     <RadioButton Content="Drinks"
                                  Checked="DrinksPageRadioButton_Checked" Style="{StaticResource MenuToggleButtonStyle}" />
-                    <!-- <RadioButton Content="Others" /> -->
-                    <!-- <RadioButton Content="Others" Style="{StaticResource MenuToggleButtonStyle}" /> -->
                 </StackPanel>
-
-                <!-- Style="{StaticResource RedRoundButtonStyle}" Width="120" /> -->
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="Manage" Command="{Binding ShowManagementWindowCommand}" Width="120"
-                            Style="{StaticResource RedRoundButtonStyle}" />
+                            Style="{StaticResource MenuButtonStyle}" />
+                    <Button Content="Profile" Command="{Binding ShowProfileCommand}"
+                            Style="{StaticResource MenuButtonStyle}" />
                     <Button Content="Sign In" Command="{Binding ShowSignInWindowCommand}"
-                            Style="{StaticResource RedRoundButtonStyle}" />
-                    <!-- <Button Content="Log In" Click="LogInButton_Click" /> -->
+                            Style="{StaticResource MenuButtonStyle}" />
                     <Button Content="Sign Up" Command="{Binding ShowSignUpWindowCommand}"
-                            Style="{StaticResource RedRoundButtonStyle}" />
-
+                            Style="{StaticResource MenuButtonStyle}" />
+                    <Button Content="Sign Out" Command="{Binding SignOutCommand}"
+                            Style="{StaticResource MenuButtonStyle}" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>
@@ -77,8 +75,7 @@
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
 
-                <ItemsControl x:Name="BasketListBox"
-                              ItemsSource="{Binding Path=Basket.Products}">
+                <ItemsControl ItemsSource="{Binding Path=Basket.Products}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate DataType="{x:Type model:Product}">
                             <Grid>
@@ -105,9 +102,10 @@
                        HorizontalAlignment="Center" FontWeight="Bold" />
             <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Bottom">
                 <Button Content="Checkout"
+                        Command="{Binding CheckoutCommand}"
                         HorizontalContentAlignment="Stretch">
                     <Button.Style>
-                        <Style TargetType="Button" BasedOn="{StaticResource CheckoutButtonStyle}">
+                        <Style TargetType="Button" BasedOn="{StaticResource GreenRoundButtonStyle}">
                             <Setter Property="IsEnabled" Value="False" />
                             <Style.Triggers>
                                 <DataTrigger

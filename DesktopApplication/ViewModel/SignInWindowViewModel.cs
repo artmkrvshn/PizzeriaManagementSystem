@@ -1,27 +1,23 @@
-﻿using System;
+﻿using DesktopApplication.Repository;
+using System;
 using System.Windows;
 using System.Windows.Input;
-using DesktopApplication.Repository;
 
 namespace DesktopApplication.ViewModel;
 
 public class SignInWindowViewModel : ViewModelBase
 {
-    #region Email
-
     private string _email = "Email";
+
+    private string _password = "Password";
+
+    #region Properties
 
     public string Email
     {
         get => _email;
         set => SetProperty(ref _email, value);
     }
-
-    #endregion
-
-    #region Password
-
-    private string _password = "Password";
 
     public string Password
     {

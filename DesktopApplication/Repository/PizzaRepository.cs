@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using DesktopApplication.Model;
+﻿using DesktopApplication.Model;
+using System.Collections.Generic;
 
 namespace DesktopApplication.Repository;
 
@@ -26,7 +26,7 @@ public static class PizzaRepository
         new Pizza("Vegetable Supreme", 18.99),
         new Pizza("Chicken Supreme", 20.99)
     };
-    
+
     public static void Create(Pizza pizza) => Pizzas.Add(pizza);
 
     public static void CreateAll(List<Pizza> pizzas)

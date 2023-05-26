@@ -1,5 +1,4 @@
 ﻿using DesktopApplication.Model;
-using DesktopApplication.Repository;
 
 // Console.WriteLine("Hello, World!");
 //
@@ -8,7 +7,6 @@ using DesktopApplication.Repository;
 // pizzas.ForEach(Console.WriteLine);
 
 
-Crust c = new("NewCrust", 1.1);
-Pizza p = new("Zaluponi Pizza", 18.99, c);
+Pizza p = new("Zaluponi Pizza", 18.99);
 
 Console.WriteLine(p);

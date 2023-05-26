@@ -2,10 +2,8 @@
 
 namespace DesktopApplication.Model;
 
-public abstract class Product : BaseModel, ICloneable
+public abstract class Product : BaseModel, IProduct, ICloneable
 {
-    private Guid Id { get; } = Guid.NewGuid();
-
     private string _name;
 
     private double _price;
@@ -15,13 +13,21 @@ public abstract class Product : BaseModel, ICloneable
     public string Name
     {
         get => _name;
-        set => SetField(ref _name, value);
+        set
+        {
+            if (string.IsNullOrEmpty(value)) return;
+            SetField(ref _name, value);
+        }
     }
 
     public double Price
     {
         get => _price;
-        set => SetField(ref _price, value);
+        set
+        {
+            if (value <= 0) return;
+            SetField(ref _price, value);
+        }
     }
 
     #endregion
@@ -32,23 +38,7 @@ public abstract class Product : BaseModel, ICloneable
         _price = price;
     }
 
-    // public override bool Equals(object? obj)
-    // {
-    //     return obj is Product product &&
-    //            Id.Equals(product.Id) &&
-    //            Name.Equals(product.Name) &&
-    //            Price.Equals(product.Price);
-    // }
-    //
-    // public override int GetHashCode()
-    // {
-    //     return HashCode.Combine(Id, Name, Price);
-    // }
-    //
-    // public override string ToString()
-    // {
-    //     return $"Product(Name={Name}, Price={Price})";
-    // }
+    public override string ToString() => Name;
 
     public abstract object Clone();
 }

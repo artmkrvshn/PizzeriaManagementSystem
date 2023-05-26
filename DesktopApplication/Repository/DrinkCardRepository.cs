@@ -18,6 +18,22 @@ public static class DrinkCardRepository
         new Card(DrinkRepository.Read(8), "500ml Bottle", "pepsi-regular-500ml.jpg"),
         new Card(DrinkRepository.Read(9), "500ml Bottle", "water-500ml.jpg")
     };
+    
+    public static void Create(Card card) => DrinkCards.Add(card);
+
+    public static void CreateAll(IEnumerable<Card> cards) => DrinkCards.AddRange(cards);
+
+    public static Card Read(int id) => DrinkCards[id];
 
     public static List<Card> ReadAll() => DrinkCards;
+
+
+    public static void Update(int id, Card card) => DrinkCards[id] = card;
+
+
+    public static void Delete(int id) => DrinkCards.RemoveAt(id);
+
+    public static void Delete(Card card) => DrinkCards.Remove(card);
+
+    public static void DeleteAll() => DrinkCards.Clear();
 }

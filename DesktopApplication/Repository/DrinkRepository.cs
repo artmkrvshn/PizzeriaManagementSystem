@@ -18,7 +18,7 @@ public static class DrinkRepository
         new Drink("Pepsi (500ml)", 1.63, 500),
         new Drink("Bottled Water (500ml)", 1.29, 500)
     };
-    
+
     public static void Create(Drink drink) => Drinks.Add(drink);
 
     public static void CreateAll(List<Drink> drinks)

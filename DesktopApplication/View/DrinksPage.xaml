@@ -3,8 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:DesktopApplication.View"
-      xmlns:model="clr-namespace:DesktopApplication.Model"
       xmlns:viewModel="clr-namespace:DesktopApplication.ViewModel"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
@@ -13,7 +11,7 @@
         <viewModel:DrinksPageViewModel />
     </Page.DataContext>
     <Grid>
-        <ItemsControl
+        <ItemsControl x:Name="DrinksItemsControl"
             ItemsSource="{Binding Path=DrinkCards, UpdateSourceTrigger=PropertyChanged}"
             Style="{StaticResource CardItemsControlStyle}" />
     </Grid>

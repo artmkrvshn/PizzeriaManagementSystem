@@ -1,15 +1,19 @@
 ﻿using DesktopApplication.Repository;
-using System.Windows.Input;
-using System.Windows;
 using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace DesktopApplication.ViewModel;
 
 class SignUpWindowViewModel : ViewModelBase
 {
-    #region Email
-
     private string _email = "Email";
+
+    private string _password = "Password";
+
+    private string _repeatPassword = "Repeat password";
+
+    #region Properties
 
     public string Email
     {
@@ -17,24 +21,12 @@ class SignUpWindowViewModel : ViewModelBase
         set => SetProperty(ref _email, value);
     }
 
-    #endregion
-
-    #region Password
-
-    private string _password = "Password";
-
     public string Password
     {
         get => _password;
         set => SetProperty(ref _password, value);
     }
-
-    #endregion
-
-    #region RepeatPassword
-
-    private string _repeatPassword = "Repeat password";
-
+    
     public string RepeatPassword
     {
         get => _repeatPassword;

@@ -5,7 +5,7 @@ namespace DesktopApplication.Model;
 
 public class Basket : BaseModel
 {
-    public ObservableCollection<Product> Products { get; set; } = new();
+    public ObservableCollection<Product> Products { get; } = new();
 
     private double _price;
 
